@@ -1,0 +1,16 @@
+<% if user_signed_in? %>
+  <h1>Welcome, <%= current_user.email %></h1>
+
+  <h1>Have a great day!!!</h1>
+
+  <%= link_to "Settings", edit_user_registration_path %>
+  <%= link_to "Products", products_path %>
+  <%= link_to "Post a product", new_product_path %>
+  <%= button_to "Signout", destroy_user_session_path, method: :delete %>
+
+
+  <%else %>
+
+  <%= link_to "Sign In", new_user_session_path %>
+  <%= link_to "Get Started", new_user_registration_path %>
+<% end %>
