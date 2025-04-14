@@ -22,8 +22,8 @@
   </div>
 
   <div>
-    <%= form.label :product_type, style: "display: block" %>
-    <%= form.text_field :product_type %>
+    <%= form.label :product_status, "Product Status", style: "display: block" %>
+    <%= form.select :product_status, options_for_select([["Active", "active"], ["Draft", "draft"]], form.object.product_status), prompt: "Select status" %>
   </div>
 
   <div>
@@ -34,6 +34,11 @@
   <div>
     <%= form.label :stock, style: "display: block" %>
     <%= form.number_field :stock %>
+  </div>
+
+  <div>
+    <%= form.label :additional_info %>
+    <%= form.rich_text_area :additional_info %>
   </div>
 
   <div>

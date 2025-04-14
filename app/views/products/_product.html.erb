@@ -11,7 +11,7 @@
 
   <p>
     <strong>Product type:</strong>
-    <%= product.product_type %>
+    <%= product.product_status %>
   </p>
 
   <p>
@@ -22,6 +22,11 @@
   <p>
     <strong>Stock:</strong>
     <%= product.stock %>
+  </p>
+
+  <p>
+    <strong>Additional Info:</strong><br>
+    <%= product.additional_info.to_s.html_safe %>
   </p>
 
 </div>
