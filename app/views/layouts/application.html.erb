@@ -33,6 +33,13 @@
           });
       });
 
+      document.addEventListener("DOMContentLoaded", function () {
+          var textarea = document.querySelector("#ckeditor");
+          if (textarea) {
+              ClassicEditor.create(textarea).catch(error => console.error(error));
+          }
+      });
+
   </script>
   </body>
 </html>
