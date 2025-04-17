@@ -1,0 +1,41 @@
+<h1>Manage Categories</h1>
+<hr>
+
+<!-- Trigger Button -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#categoryModal">
+  + Add Category
+</button>
+
+<!-- Category Modal -->
+<div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="categoryModalLabel">New Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with(model: @category, url: categories_path, local: true) do |form| %>
+          <div class="mb-3">
+            <%= form.label :name, class: "form-label" %>
+            <%= form.text_field :name, class: "form-control" %>
+          </div>
+          <div class="modal-footer">
+            <%= form.submit "Create Category", class: "btn btn-success" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- List of Categories -->
+<ul class="list-group mt-4">
+  <% @categories.each do |category| %>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <%= category.name %>
+      <span class="badge bg-primary rounded-pill"><%= category.products.count %> Products</span>
+    </li>
+  <% end %>
+</ul>

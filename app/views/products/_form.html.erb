@@ -41,6 +41,11 @@
     <%= form.rich_text_area :additional_info %>
   </div>
 
+  <div class="mb-3">
+    <%= form.label :category_id, "Category", class: "form-label" %>
+    <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "Select Category" }, class: "form-control" %>
+  </div>
+
   <div>
     <%= form.submit %>
   </div>

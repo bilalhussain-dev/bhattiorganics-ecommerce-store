@@ -14,4 +14,7 @@ Rails.application.routes.draw do
   root "pages#index"
 
   get "about",to: "pages#about", as: :about_page
+  resources :categories, only: [:index, :create]
+
+
 end
