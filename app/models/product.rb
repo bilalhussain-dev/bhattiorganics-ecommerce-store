@@ -7,4 +7,6 @@ class Product < ApplicationRecord
   has_rich_text :additional_info
 
 
+  belongs_to :user
+
 end
