@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :require_admin!, only: [:new, :create, :edit, :update, :destroy]
+
 
   # GET /products or /products.json
   def index
@@ -68,4 +70,11 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:title, :details, :product_status, :price, :stock, :additional_info)
     end
+
+    def require_admin!
+      unless current_user&.admin?
+        redirect_to products_path, alert: "You are not authorized to perform this action."
+      end
+    end
+
 end

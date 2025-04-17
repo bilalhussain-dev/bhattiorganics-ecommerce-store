@@ -5,7 +5,9 @@
 
   <%= link_to "Settings", edit_user_registration_path %>
   <%= link_to "Products", products_path %>
-  <%= link_to "Post a product", new_product_path %>
+  <% if current_user&.admin? %>
+    <%= link_to "Post a product", new_product_path %>
+  <% end %>
   <%= button_to "Signout", destroy_user_session_path, method: :delete %>
 
 
