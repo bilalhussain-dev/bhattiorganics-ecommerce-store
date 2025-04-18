@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :products
+  get 'dashboard/index'
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
@@ -12,9 +13,14 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "pages#index"
-
+  resources :products
   get "about",to: "pages#about", as: :about_page
   resources :categories, only: [:index, :create]
 
+  # Manage SEO of Products
 
+
+
+  # Dashboard
+  get "dashboard", to: "dashboard#index"
 end
