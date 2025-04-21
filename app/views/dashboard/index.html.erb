@@ -66,5 +66,6 @@
     </tbody>
   </table>
 <% else %>
-  <p>You are not authorized to view this page.</p>
+  <h1>Welcome <%= current_user.first_name %></h1>
+  <p>You can now manage everything.</p>
 <% end %>

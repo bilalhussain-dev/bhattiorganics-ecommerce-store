@@ -6,7 +6,8 @@ class DashboardController < ApplicationController
       @users = User.all
       @products = Product.all
     else
-      # @products = Product.all
+      @products = Product.all
+
     end
   end
 end
