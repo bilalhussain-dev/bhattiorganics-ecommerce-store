@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_04_17_110915) do
+ActiveRecord::Schema[7.1].define(version: 2025_04_21_073704) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -65,6 +65,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_17_110915) do
     t.string "product_status"
     t.integer "user_id", null: false
     t.integer "category_id", null: false
+    t.string "seo_title"
+    t.text "meta_description"
+    t.string "seo_keywords"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
