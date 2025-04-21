@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>OrganicStoreApp</title>
+    <title><%= content_for?(:title) ? yield(:title) : "BhattiOrganics" %></title>
+    <meta name="description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : "Default meta description" %>">
+    <meta name="keywords" content="<%= content_for?(:meta_keywords) ? yield(:meta_keywords) : "default, keywords" %>">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>

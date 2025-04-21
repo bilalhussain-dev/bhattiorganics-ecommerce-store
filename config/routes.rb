@@ -13,7 +13,14 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "pages#index"
-  resources :products
+
+  resources :products do
+    member do
+      get 'edit_seo'   # Route to edit SEO
+      patch 'update_seo'  # Route to update SEO
+    end
+  end
+
   get "about",to: "pages#about", as: :about_page
   resources :categories, only: [:index, :create]
 

@@ -1,2 +1,70 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
+<% if current_user.admin? %>
+  <h1>Dashboard - Manage Products</h1>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Product Name</th>
+      <th>SEO Status</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.title %></td>
+        <td>
+          <% if product.seo_title.present? %>
+            ✅ SEO Done
+          <% else %>
+            ❌ SEO Not Set
+          <% end %>
+        </td>
+        <td>
+          <!-- Button to open the modal -->
+          <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#seoModal<%= product.id %>">
+            Manage SEO
+          </button>
+        </td>
+      </tr>
+
+      <!-- Modal for each product -->
+      <div class="modal fade" id="seoModal<%= product.id %>" tabindex="-1" aria-labelledby="seoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="seoModalLabel">Manage SEO for <%= product.title %></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <!-- SEO Form -->
+              <%= form_with(model: product, url: update_seo_product_path(product), local: true) do |form| %>
+                <div class="mb-3">
+                  <%= form.label :seo_title, "SEO Title" %>
+                  <%= form.text_field :seo_title, class: 'form-control' %>
+                </div>
+
+                <div class="mb-3">
+                  <%= form.label :meta_description, "SEO Description" %>
+                  <%= form.text_area :meta_description, class: 'form-control' %>
+                </div>
+
+                <div class="mb-3">
+                  <%= form.label :seo_keywords, "SEO Keywords" %>
+                  <%= form.text_field :seo_keywords, class: 'form-control' %>
+                </div>
+
+                <div class="mb-3">
+                  <%= form.submit "Save SEO", class: 'btn btn-primary' %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>You are not authorized to view this page.</p>
+<% end %>
