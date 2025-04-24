@@ -9,5 +9,7 @@ class Product < ApplicationRecord
 
   belongs_to :user
   belongs_to :category, optional: true
+  has_many :wishlists, dependent: :destroy
+  has_many :wishlisted_by_users, through: :wishlists, source: :user
 
 end

@@ -7,7 +7,10 @@ class DashboardController < ApplicationController
       @products = Product.all
     else
       @products = Product.all
-
     end
+  end
+
+  def wished_products
+    @wishlists = current_user.wished_products.all
   end
 end

@@ -6,6 +6,15 @@
 
 <%= render @product %>
 
+<% if user_signed_in? %>
+  <% if current_user.wished_products.include?(@product) %>
+    <%= button_to "Remove from Wishlist", product_wishlist_path(@product), method: :delete, class: "btn btn-danger" %>
+  <% else %>
+    <%= button_to "Add to Wishlist", product_wishlist_path(@product), method: :post, class: "btn btn-primary" %>
+  <% end %>
+<% end %>
+
+
 <div>
   <%= link_to "Edit this product", edit_product_path(@product) %> |
   <%= link_to "Back to products", products_path %>

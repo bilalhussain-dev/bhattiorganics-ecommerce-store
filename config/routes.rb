@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'wishlists/create'
+  get 'wishlists/destroy'
   get 'dashboard/index'
 
   devise_for :users, controllers: {
@@ -19,6 +21,8 @@ Rails.application.routes.draw do
       get 'edit_seo'   # Route to edit SEO
       patch 'update_seo'  # Route to update SEO
     end
+
+    resource :wishlist, only: [:create, :destroy]
   end
 
   get "about",to: "pages#about", as: :about_page
@@ -30,4 +34,5 @@ Rails.application.routes.draw do
 
   # Dashboard
   get "dashboard", to: "dashboard#index"
+  get "dashboard/wishlist", to: "dashboard#wishlist"
 end
