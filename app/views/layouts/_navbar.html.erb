@@ -30,30 +30,13 @@
 
       <!-- Right-aligned items -->
       <div class="d-flex align-items-center navbar-action-group">
-        <!-- New Job Button -->
-        <button class="btn btn-primary me-3">
-          <i class="bi bi-plus me-1"></i>
-          Ads a new product
-        </button>
+        <% if user_signed_in? %>
+          <%= render 'shared/signed-in-user-nav' %>
+          <%else %>
+          <%= link_to "Start Free Trail", new_user_registration_path, class: 'btn btn-primary-main me-3', type:'button' %>
 
-        <!-- Notification Bell -->
-        <div class="me-3">
-          <a href="#" class="text-decoration-none notification-icon">
-            <i class="bi bi-bell"></i>
-          </a>
-        </div>
-
-        <!-- User Avatar with Dropdown -->
-        <div class="dropdown">
-          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="User" class="user-avatar" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-            <li><a class="dropdown-item" href="#">Your Profile</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
-          </ul>
-        </div>
+          <%= link_to "Sign In", new_user_session_path ,class: 'sign-in-link' %>
+      <% end %>
       </div>
     </div>
   </div>

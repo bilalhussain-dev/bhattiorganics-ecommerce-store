@@ -13,3 +13,136 @@
  *= require_tree .
  *= require_self
  */
+
+
+:root {
+    --primary--main: #e6d03d;
+    --border-light: #f1f1f4;
+    --text-dark: #334155;
+    --text-muted: #64748b;
+    --bg-light: #ffffff;
+}
+
+body {
+    font-family: "Lato", sans-serif !important;
+    color: var(--text-dark);
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    font-weight: 400 !important;
+}
+
+.navbar {
+    padding: 14px 16px;
+    background-color: var(--bg-light);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.navbar-brand {
+    margin-right: 40px;
+}
+
+.navbar-brand img {
+    height: 32px;
+}
+
+.nav-item {
+    position: relative;
+    margin: 0 4px;
+}
+
+.nav-link {
+    color: var(--text-muted) !important;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 8px 16px !important;
+    transition: all 0.15s ease;
+}
+
+.nav-link:hover {
+    color: var(--text-dark) !important;
+}
+
+.nav-link.active {
+    color: var(--text-dark) !important;
+}
+
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -14px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--primary--main);
+}
+
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.dropdown-item {
+    padding: 10px 16px;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(99, 102, 241, 0.05);
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.user-avatar:hover {
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.btn-primary-main {
+    background-color: var(--primary--main) !important;
+    padding: 10px 20px !important;
+    border-radius: 10px !important;
+    color: #333 !important;
+    font-weight: 600 !important;
+    font-size: 18px !important;
+    outline: none !important;
+    border: none !important;
+}
+
+.sign-in-link {
+    color: #333 !important;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        margin-top: 15px;
+        padding: 15px;
+        border-radius: 8px;
+        background-color: var(--bg-light);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .nav-item.active::after {
+        bottom: 0;
+        width: 3px;
+        height: 100%;
+        left: -15px;
+    }
+
+    .navbar-action-group {
+        margin-top: 15px;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+}
