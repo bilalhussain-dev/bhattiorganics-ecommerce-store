@@ -1,7 +1,7 @@
 <h1>Wishlist goes here</h1>
 <hr>
 <% if current_user %>
-  <% if current_user.wished_products.size <= 0 %>
+  <% if current_user.wished_products.size === 0 %>
     <h3>There is nothing in the wishlist</h3>
     <%= link_to "Explore Products", products_path, type: 'button', class: 'btn btn-primary px-4 py-2 rounded-full' %>
 
