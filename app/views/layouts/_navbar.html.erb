@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-  <div class="container">
+  <div class="container-fluid px-5">
     <!-- Logo -->
     <a class="navbar-brand" href="/">
       <h3>B-oranics</h3>
@@ -17,9 +17,20 @@
         <li class="nav-item active">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Categories</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span>Brows Categories</span>
+            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+          </a>
+          <ul class="dropdown-menu shadow rounded-3 border-0 mt-2 dropdown-menu-categories">
+            <li><a class="dropdown-item" href="#">Electronics</a></li>
+            <li><a class="dropdown-item" href="#">Vehicles</a></li>
+            <li><a class="dropdown-item" href="#">Real Estate</a></li>
+            <li><a class="dropdown-item" href="#">Services</a></li>
+            <li><a class="dropdown-item" href="#">Jobs</a></li>
+          </ul>
         </li>
+
         <li class="nav-item">
           <a class="nav-link" href="#">New Arrivals</a>
         </li>
@@ -33,9 +44,9 @@
         <% if user_signed_in? %>
           <%= render 'shared/signed-in-user-nav' %>
           <%else %>
-          <%= link_to "Start Free Trail", new_user_registration_path, class: 'btn btn-primary-main me-3', type:'button' %>
+          <%= link_to "Sign up", new_user_registration_path ,class: 'sign-in-link me-3' %>
 
-          <%= link_to "Sign In", new_user_session_path ,class: 'sign-in-link' %>
+          <%= link_to "Log in", new_user_session_path, class: 'btn btn-primary-main', type:'button' %>
       <% end %>
       </div>
     </div>

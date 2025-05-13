@@ -1,3 +1,280 @@
+<section class="hero-section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <h1 class="hero-heading">Find Anything.<br>Post Everything.</h1>
+        <p class="hero-subtext">Buy, sell, rent, or trade – all in one place. From gadgets to jobs, real estate to services, your local marketplace is now just a click away.</p>
+        <div class="search-container">
+          <input type="text" class="search-input" placeholder="Search for the perfect match?">
+          <button class="search-btn">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+      <div class="col-lg-5 text-center">
+        <!-- Assuming you already have the hand image -->
+        <%= image_tag "hand-image-hero.png", alt: "Description", class: "hand-image" %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- List down the products -->
+<div class="container">
+  <div class="filters d-flex flex-wrap justify-content-center">
+    <button class="filter-btn active">All Products</button>
+    <button class="filter-btn">Electronics</button>
+    <button class="filter-btn">Fashion</button>
+    <button class="filter-btn">Home & Living</button>
+    <button class="filter-btn">Sports</button>
+  </div>
+
+  <h2 class="section-title">Explore All</h2>
+
+  <div class="row">
+    <!-- Product 1 -->
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Wireless Headphones" class="product-img">
+          <div class="product-badge badge-electronics">Electronics</div>
+          <button class="wishlist-btn">
+            <i class="fa fa-heart"></i>
+          </button>
+        </div>
+        <div class="product-details">
+          <h3 class="product-title">Premium Wireless Noise Cancelling Headphones</h3>
+          <p class="product-price">$129.99</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Smart Watch" class="product-img">
+          <div class="product-badge badge-electronics">Electronics</div>
+          <button class="wishlist-btn">
+            <i class="fa fa-heart"></i>
+          </button>
+        </div>
+        <div class="product-details">
+          <h3 class="product-title">Smart Watch Fitness Tracker with Heart Rate Monitor</h3>
+          <p class="product-price">$89.99</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Summer Dress" class="product-img">
+          <div class="product-badge badge-fashion">Fashion</div>
+          <button class="wishlist-btn">
+            <i class="fa fa-heart"></i>
+          </button>
+        </div>
+        <div class="product-details">
+          <h3 class="product-title">Summer Floral Print Maxi Dress</h3>
+          <p class="product-price">$59.99</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Coffee Maker" class="product-img">
+          <div class="product-badge badge-home">Home</div>
+          <button class="wishlist-btn">
+            <i class="fa fa-heart"></i>
+          </button>
+        </div>
+        <div class="product-details">
+          <h3 class="product-title">Premium Automatic Coffee Maker with Timer</h3>
+          <p class="product-price">$149.99</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 5 -->
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Running Shoes" class="product-img">
+          <div class="product-badge badge-sports">Sports</div>
+          <button class="wishlist-btn">
+            <i class="fa fa-heart"></i>
+          </button>
+        </div>
+        <div class="product-details">
+          <h3 class="product-title">Ultralight Running Shoes with Cushioned Sole</h3>
+          <p class="product-price">$79.99</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 6 -->
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Bluetooth Speaker" class="product-img">
+          <div class="product-badge badge-electronics">Electronics</div>
+          <button class="wishlist-btn">
+            <i class="fa fa-heart"></i>
+          </button>
+        </div>
+        <div class="product-details">
+          <h3 class="product-title">Portable Waterproof Bluetooth Speaker</h3>
+          <p class="product-price">$49.99</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 7 -->
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Denim Jacket" class="product-img">
+          <div class="product-badge badge-fashion">Fashion</div>
+          <button class="wishlist-btn">
+            <i class="fa fa-heart"></i>
+          </button>
+        </div>
+        <div class="product-details">
+
+          <h3 class="product-title">Classic Denim Jacket with Modern Wash</h3>
+          <p class="product-price">$69.99</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 8 -->
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Smart Lamp" class="product-img">
+          <div class="product-badge badge-home">Home</div>
+          <button class="wishlist-btn">
+            <i class="fa fa-heart"></i>
+          </button>
+        </div>
+        <div class="product-details">
+          <h3 class="product-title">Smart LED Table Lamp with App Control</h3>
+          <p class="product-price">$39.99</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Featured listing -->
+<div class="container">
+
+  <h2 class="section-title">Featured</h2>
+
+  <div class="row">
+    <!-- Product 1 -->
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Wireless Headphones" class="product-img">
+          <div class="product-badge badge-electronics">Electronics</div>
+          <button class="wishlist-btn">
+            <i class="fa fa-heart"></i>
+          </button>
+        </div>
+        <div class="product-details">
+          <h3 class="product-title">Premium Wireless Noise Cancelling Headphones</h3>
+          <p class="product-price">$129.99</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Smart Watch" class="product-img">
+          <div class="product-badge badge-electronics">Electronics</div>
+          <button class="wishlist-btn">
+            <i class="fa fa-heart"></i>
+          </button>
+        </div>
+        <div class="product-details">
+          <h3 class="product-title">Smart Watch Fitness Tracker with Heart Rate Monitor</h3>
+          <p class="product-price">$89.99</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Summer Dress" class="product-img">
+          <div class="product-badge badge-fashion">Fashion</div>
+          <button class="wishlist-btn">
+            <i class="fa fa-heart"></i>
+          </button>
+        </div>
+        <div class="product-details">
+          <h3 class="product-title">Summer Floral Print Maxi Dress</h3>
+          <p class="product-price">$59.99</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Coffee Maker" class="product-img">
+          <div class="product-badge badge-home">Home</div>
+          <button class="wishlist-btn">
+            <i class="fa fa-heart"></i>
+          </button>
+        </div>
+        <div class="product-details">
+          <h3 class="product-title">Premium Automatic Coffee Maker with Timer</h3>
+          <p class="product-price">$149.99</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    // Toggle wishlist heart icon
+    document.querySelectorAll('.wishlist-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            this.classList.toggle('active');
+            const icon = this.querySelector('i');
+            if (icon.classList.contains('bi-heart')) {
+                icon.classList.remove('bi-heart');
+                icon.classList.add('bi-heart-fill');
+            } else {
+                icon.classList.remove('bi-heart-fill');
+                icon.classList.add('bi-heart');
+            }
+        });
+    });
+
+    // Filter buttons active state
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+</script>
+
+
+
 <% if user_signed_in? %>
   <h1>Welcome, <%= current_user.email %></h1>
 
