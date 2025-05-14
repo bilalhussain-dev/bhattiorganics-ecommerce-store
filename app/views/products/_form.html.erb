@@ -1,55 +1,108 @@
-<div class="form-product-app">
-  <%= form_with(model: product) do |form| %>
-    <% if product.errors.any? %>
-      <div style="color: red">
-        <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="product-form-container">
+        <div class="product-form-header">
+          <% if @product.new_record? %>
+            <h2>Create New Product</h2>
+            <p>Fill in the details below to add a new product to your inventory</p>
 
-        <ul>
-          <% product.errors.each do |error| %>
-            <li><%= error.full_message %></li>
+            <%else %>
+            <h2>Edit Product</h2>
+            <p>Fill in the details below to add a new product to your inventory</p>
           <% end %>
-        </ul>
+        </div>
+
+        <div class="product-form-body">
+          <%= form_with(model: product, class: "needs-validation") do |form| %>
+            <% if product.errors.any? %>
+              <div class="error-container">
+                <h5><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h5>
+                <ul>
+                  <% product.errors.each do |error| %>
+                    <li><%= error.full_message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div class="form-section">
+              <h3 class="form-section-title">Basic Information</h3>
+
+              <div class="form-floating mb-3">
+                <%= form.text_field :title, class: "form-control", placeholder: "Product Title", id: "productTitle" %>
+                <%= form.label :title, "Product Title", for: "productTitle" %>
+              </div>
+
+              <div class="form-floating mb-3">
+                <%= form.text_area :details, class: "form-control", placeholder: "Product Details", id: "productDetails", style: "height: 120px" %>
+                <%= form.label :details, "Description", for: "productDetails" %>
+              </div>
+
+              <div class="row align-items-center">
+                <div class="col-md-6">
+                  <label class="form-label mb-2">Product Status</label>
+                  <div class="status-toggle">
+                    <%= form.radio_button :product_status, "active", id: "statusActive", checked: form.object.product_status == "active" || form.object.product_status.nil? %>
+                    <label for="statusActive">Active</label>
+
+                    <%= form.radio_button :product_status, "draft", id: "statusDraft", checked: form.object.product_status == "draft" %>
+                    <label for="statusDraft">Draft</label>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "Select Category" }, { class: "form-select", id: "productCategory" } %>
+                    <%= form.label :category_id, "Category", for: "productCategory" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3 class="form-section-title">Pricing & Inventory</h3>
+
+              <div class="row">
+                <div class="col-md-6">
+
+                  <div class="form-floating mb-3">
+                    <%= form.text_field :price, class: "form-control", placeholder: "Price", id: "productPrice" %>
+                    <%= form.label :stock, "Price", for: "productPrice" %>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-floating mb-3">
+                    <%= form.number_field :stock, class: "form-control", placeholder: "Stock", id: "productStock" %>
+                    <%= form.label :stock, "Available Quantity", for: "productStock" %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label">Product Image</label>
+                <div class="thumbnail-preview">
+                  <span>Click or drag to upload image</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3 class="form-section-title">Additional Information</h3>
+
+              <div class="mb-4">
+                <%= form.rich_text_area :additional_info, class: "form-control", placeholder: "Additional details about your product..." %>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+              <%= link_to "Cancel", products_path, class: "btn btn-product-cancel" %>
+              <%= form.submit "Save Product", class: "btn btn-product-submit" %>
+            </div>
+          <% end %>
+        </div>
       </div>
-    <% end %>
-
-    <div>
-      <%= form.label :title, style: "display: block" %>
-      <%= form.text_field :title %>
     </div>
-
-    <div>
-      <%= form.label :details, style: "display: block" %>
-      <%= form.text_area :details %>
-    </div>
-
-    <div>
-      <%= form.label :product_status, "Product Status", style: "display: block" %>
-      <%= form.select :product_status, options_for_select([["Active", "active"], ["Draft", "draft"]], form.object.product_status), prompt: "Select status" %>
-    </div>
-
-    <div>
-      <%= form.label :price, style: "display: block" %>
-      <%= form.text_field :price %>
-    </div>
-
-    <div>
-      <%= form.label :stock, style: "display: block" %>
-      <%= form.number_field :stock %>
-    </div>
-
-    <div>
-      <%= form.label :additional_info %>
-      <%= form.rich_text_area :additional_info %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :category_id, "Category", class: "form-label" %>
-      <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "Select Category" }, class: "form-control" %>
-    </div>
-
-    <div>
-      <%= form.submit %>
-    </div>
-  <% end %>
-
+  </div>
 </div>

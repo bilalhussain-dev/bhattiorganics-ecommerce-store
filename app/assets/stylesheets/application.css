@@ -625,6 +625,265 @@ body {
 }
 
 
+/***************
+*************** Product Upload Form************/
+
+.product-form-container {
+    --form-border-radius: 16px;
+    --input-border-radius: 12px;
+    --transition-speed: 0.3s;
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-light);
+    border-radius: var(--form-border-radius);
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-light);
+    overflow: hidden;
+}
+
+.product-form-header {
+    background: linear-gradient(135deg, var(--primary--main) 0%, var(--dark) 100%);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-form-header::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: var(--primary-sub);
+    opacity: 0.2;
+}
+
+.product-form-header::after {
+    content: "";
+    position: absolute;
+    bottom: -30px;
+    left: -30px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: var(--secondary);
+    opacity: 0.15;
+}
+
+.product-form-header h2 {
+    color: var(--text-light);
+    font-weight: 700;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+    letter-spacing: -0.5px;
+}
+
+.product-form-header p {
+    color: var(--border-light);
+    margin: 0.5rem 0 0;
+    opacity: 0.8;
+    font-weight: 300;
+    position: relative;
+    z-index: 2;
+}
+
+.product-form-body {
+    padding: 2.5rem;
+}
+
+.form-section {
+    margin-bottom: 2.5rem;
+}
+
+.form-section-title {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--primary-sub);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-section-title::after {
+    content: "";
+    height: 1px;
+    flex-grow: 1;
+    background: linear-gradient(to right, var(--primary-sub) 0%, transparent 100%);
+    opacity: 0.3;
+}
+
+.form-floating {
+    margin-bottom: 1.5rem;
+}
+
+.form-floating > label {
+    color: var(--text-muted);
+    padding-left: 1rem;
+}
+
+.form-control, .form-select {
+    border-radius: var(--input-border-radius);
+    border: 2px solid var(--border-light);
+    padding: 1rem;
+    font-size: 1rem;
+    transition: all var(--transition-speed);
+    color: var(--text-dark);
+    box-shadow: none;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-sub);
+    box-shadow: 0 0 0 3px rgba(219, 114, 16, 0.1);
+}
+
+.form-control::placeholder {
+    color: var(--text-muted);
+    opacity: 0.5;
+}
+
+.input-icon-wrapper {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1rem;
+    color: var(--text-muted);
+    z-index: 1;
+}
+
+.has-icon {
+    padding-left: 3rem;
+}
+
+.btn-product-submit {
+    background: linear-gradient(135deg, var(--primary-sub) 0%, #e98b38 100%);
+    border: none;
+    border-radius: 50px;
+    padding: 0.75rem 2rem;
+    color: white;
+    font-weight: 600;
+    transition: all var(--transition-speed);
+    box-shadow: 0 4px 15px rgba(219, 114, 16, 0.25);
+}
+
+.btn-product-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(219, 114, 16, 0.35);
+}
+
+.btn-product-cancel {
+    background: transparent;
+    border: 2px solid var(--border-light);
+    border-radius: 50px;
+    padding: 0.75rem 2rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    transition: all var(--transition-speed);
+}
+
+.btn-product-cancel:hover {
+    background-color: var(--border-light);
+    color: var(--text-dark);
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-sub);
+    border-color: var(--primary-sub);
+}
+
+.status-toggle {
+    display: flex;
+    background: var(--light);
+    border-radius: 50px;
+    padding: 0.25rem;
+    margin-bottom: 1.5rem;
+    border: 2px solid var(--border-light);
+}
+
+.status-toggle label {
+    flex: 1;
+    text-align: center;
+    padding: 0.75rem;
+    cursor: pointer;
+    border-radius: 50px;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: all var(--transition-speed);
+    margin: 0;
+}
+
+.status-toggle input[type="radio"] {
+    display: none;
+}
+
+.status-toggle input[type="radio"]:checked + label {
+    background-color: var(--primary-sub);
+    color: white;
+}
+
+.error-container {
+    background-color: rgba(255, 107, 107, 0.1);
+    border-left: 4px solid var(--secondary);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.error-container h5 {
+    color: var(--secondary);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.error-container ul {
+    margin-bottom: 0;
+    padding-left: 1.25rem;
+    color: var(--text-dark);
+}
+
+.thumbnail-preview {
+    width: 100%;
+    height: 200px;
+    border-radius: var(--input-border-radius);
+    border: 2px dashed var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    background-size: cover;
+    background-position: center;
+}
+
+.thumbnail-preview:hover {
+    border-color: var(--primary-sub);
+    color: var(--primary-sub);
+}
+
+@media (max-width: 768px) {
+    .product-form-body {
+        padding: 1.5rem;
+    }
+
+    .status-toggle label {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
 
 
 
