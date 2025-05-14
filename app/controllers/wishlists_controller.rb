@@ -1,7 +1,5 @@
 class WishlistsController < ApplicationController
   before_action :authenticate_user!
-
-
   def create
     product = Product.find(params[:product_id])
     current_user.wished_products << product unless current_user.wished_products.include?(product)
