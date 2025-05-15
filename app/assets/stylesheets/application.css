@@ -43,6 +43,10 @@
 
 .dropdown-menu-categories {width: 200px;}
 
+.product-heading-link {
+    color: var(--primary--main);
+}
+
 body {
     font-family: "Lato", sans-serif !important;
     color: var(--text-dark);
@@ -871,6 +875,43 @@ body {
 .thumbnail-preview:hover {
     border-color: var(--primary-sub);
     color: var(--primary-sub);
+}
+
+/*Adding Skelton loader to the products */
+/* Base Skeleton effect */
+.skeleton-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton-effect * {
+    color: transparent !important;
+    background-color: #e0e0e0 !important;
+    border-color: transparent !important;
+    border-radius: 4px;
+}
+
+.skeleton-effect .img-placeholder {
+    height: 200px;
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+}
+
+/* Shimmer line animation */
+.skeleton-effect::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150px;
+    width: 100px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shimmer-line 1.2s infinite;
+}
+
+@keyframes shimmer-line {
+    0% { left: -150px; }
+    100% { left: 100%; }
 }
 
 @media (max-width: 768px) {
