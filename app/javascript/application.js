@@ -47,3 +47,15 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
         this.classList.add('active');
     });
 });
+
+// Simple script to handle thumbnail clicks
+document.querySelectorAll('.thumbnail').forEach(thumb => {
+    thumb.addEventListener('click', function() {
+        // Update main image
+        document.querySelector('.product-image-main').src = this.src;
+
+        // Update active thumbnail
+        document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
