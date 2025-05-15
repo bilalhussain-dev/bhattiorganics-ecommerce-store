@@ -10,6 +10,9 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   def show
+    # show the related products for the same category
+    @related_products = Product.where(category_id: @product.category_id)
+                               .where.not(id: @product.id).limit(4)
   end
 
   # GET /products/new
