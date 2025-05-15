@@ -1,32 +1,229 @@
-<div id="<%= dom_id product %>">
-  <p>
-    <strong>Title:</strong>
-    <%= product.title %>
-  </p>
+<div class="container my-5">
+  <div id="<%= dom_id product %>">
 
-  <p>
-    <strong>Details:</strong>
-    <%= product.details %>
-  </p>
+    <!-- Product Details Section -->
+    <div class="product-container p-4 mb-5">
+      <div class="row">
+        <!-- Product Images -->
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <div class="row">
+            <div class="col-12 mb-3">
+              <img src="https://images.pexels.com/photos/933648/pexels-photo-933648.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Premium Pet Food" class="img-fluid product-image-main w-100">
+            </div>
+            <div class="col-12">
+              <div class="d-flex gap-2">
+                <img src="https://images.pexels.com/photos/16565742/pexels-photo-16565742/free-photo-of-group-of-goats-enjoying-the-sun-on-a-pasture.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Product Thumbnail 1" class="thumbnail active">
+                <img src="https://images.pexels.com/photos/30606128/pexels-photo-30606128/free-photo-of-close-up-portrait-of-a-goat-in-natural-habitat.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="Product Thumbnail 2" class="thumbnail">
+                <img src="https://images.pexels.com/photos/16592580/pexels-photo-16592580/free-photo-of-close-up-of-a-saanen-goat.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="Product Thumbnail 3" class="thumbnail">
+              </div>
+            </div>
+          </div>
+        </div>
 
-  <p>
-    <strong>Product type:</strong>
-    <%= product.product_status %>
-  </p>
+        <!-- Product Info -->
+        <div class="col-lg-6">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <span class="category-badge">
+              <%= product.category.name %>
+            </span>
+            <div>
+              <div class="d-flex gap-3 mb-4">
+                <% if user_signed_in? %>
+                  <% if current_user.wished_products.include?(@product) %>
+                    <%= button_to product_wishlist_path(@product), method: :delete, class: "btn-favorite" do %>
+                      <i class="fa fa-gratipay" aria-hidden="true"></i>
+                    <% end %>
+                  <% else %>
+                    <%= button_to product_wishlist_path(@product), method: :post, class: "btn-favorite" do %>
+                      <i class="fa fa-gratipay filled-heart" aria-hidden="true"></i>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <h1 class="product-title-show mb-2"><%= product.title %></h1>
+          <p class="price mb-4">$<%= product.price %></p>
+          <p class="mb-4"><%= product.additional_info %></p>
+        </div>
+      </div>
+    </div>
 
-  <p>
-    <strong>Price:</strong>
-    <%= product.price %>
-  </p>
+    <!-- Product Specifications -->
+    <div class="product-container p-4 mb-5">
+      <ul class="nav nav-tabs border-0 specifications-tab mb-4" id="productTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab">Description</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab">Reviews</button>
+        </li>
+      </ul>
 
-  <p>
-    <strong>Stock:</strong>
-    <%= product.stock %>
-  </p>
+      <div class="tab-content" id="productTabContent">
+        <div class="tab-pane fade show active" id="description" role="tabpanel">
+          <div class="row">
+            <div class="col-lg-8">
+              <h4 class="mb-3">Product Description</h4>
+              <%= product.details %>
+            </div>
+            <div class="col-lg-4">
+              <img src="/api/placeholder/400/300" alt="Product feature" class="img-fluid rounded mb-3">
+              <h5 class="mb-2">Perfect For</h5>
+              <ul class="ps-3">
+                <li>Adult dogs of all breeds</li>
+                <li>Active dogs with high energy needs</li>
+                <li>Dogs with sensitive digestion</li>
+                <li>Maintaining healthy weight</li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
-  <p>
-    <strong>Additional Info:</strong><br>
-    <%= product.additional_info.to_s.html_safe %>
-  </p>
 
+        <div class="tab-pane fade" id="reviews" role="tabpanel">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="mb-0">Customer Reviews</h4>
+            <button class="btn btn-outline-primary">Write a Review</button>
+          </div>
+
+          <!-- Sample Review -->
+          <div class="border-bottom pb-4 mb-4">
+            <div class="d-flex justify-content-between mb-2">
+              <div>
+                <h5 class="mb-0">Amazing product!</h5>
+                <div>
+                  <i class="fas fa-star text-warning"></i>
+                  <i class="fas fa-star text-warning"></i>
+                  <i class="fas fa-star text-warning"></i>
+                  <i class="fas fa-star text-warning"></i>
+                  <i class="fas fa-star text-warning"></i>
+                </div>
+              </div>
+              <span class="text-muted">2 weeks ago</span>
+            </div>
+            <p class="mb-2">My Golden Retriever absolutely loves this food! I've noticed a significant improvement in his coat and energy levels since switching to this brand.</p>
+            <div class="d-flex align-items-center">
+              <span class="fw-bold me-2">Sarah M.</span>
+              <span class="badge bg-success">Verified Purchase</span>
+            </div>
+          </div>
+
+          <!-- Sample Review -->
+          <div class="border-bottom pb-4 mb-4">
+            <div class="d-flex justify-content-between mb-2">
+              <div>
+                <h5 class="mb-0">Great quality food</h5>
+                <div>
+                  <i class="fas fa-star text-warning"></i>
+                  <i class="fas fa-star text-warning"></i>
+                  <i class="fas fa-star text-warning"></i>
+                  <i class="fas fa-star text-warning"></i>
+                  <i class="far fa-star text-warning"></i>
+                </div>
+              </div>
+              <span class="text-muted">1 month ago</span>
+            </div>
+            <p class="mb-2">My picky eater finally found something she enjoys! The kibble size is perfect for my small dog and she seems to digest it very well. Taking off one star because it's a bit pricey.</p>
+            <div class="d-flex align-items-center">
+              <span class="fw-bold me-2">Michael T.</span>
+              <span class="badge bg-success">Verified Purchase</span>
+            </div>
+          </div>
+
+          <div class="text-center mt-4">
+            <button class="btn btn-outline-primary">Load More Reviews</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- You May Also Like Section -->
+    <div class="mb-4">
+      <h2 class="related-title mb-2">You may also like</h2>
+      <p class="related-subtitle mb-4">Check out these other popular products for your pet</p>
+
+      <div class="row g-4">
+        <!-- Item 1 -->
+        <div class="col-lg-6">
+          <div class="card related-card border-0 h-100">
+            <div class="row g-0">
+              <div class="col-md-5">
+                <img src="https://images.pexels.com/photos/25549225/pexels-photo-25549225/free-photo-of-goat-on-a-farm.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="Dog toy" class="img-fluid h-100 w-100" style="object-fit: cover;">
+              </div>
+              <div class="col-md-7">
+                <div class="card-body d-flex flex-column h-100">
+                  <h4 class="card-title mb-2">Interactive Dog Toy Bundle</h4>
+                  <p class="card-text mb-4">Keep your furry friend entertained for hours with our collection of mentally stimulating toys.</p>
+                  <div class="mt-auto">
+                    <button class="read-more-btn w-100">Read more</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="col-lg-6">
+          <div class="card related-card border-0 h-100">
+            <div class="row g-0">
+              <div class="col-md-5">
+                <img src="https://images.pexels.com/photos/25549225/pexels-photo-25549225/free-photo-of-goat-on-a-farm.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="Pet bed" class="img-fluid h-100 w-100" style="object-fit: cover;">
+              </div>
+              <div class="col-md-7">
+                <div class="card-body d-flex flex-column h-100">
+                  <h4 class="card-title mb-2">Orthopedic Pet Bed</h4>
+                  <p class="card-text mb-4">Luxurious memory foam bed providing ultimate comfort and support for pets of all ages.</p>
+                  <div class="mt-auto">
+                    <button class="read-more-btn w-100">Read more</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="col-lg-6">
+          <div class="card related-card border-0 h-100">
+            <div class="row g-0">
+              <div class="col-md-5">
+                <img src="https://images.pexels.com/photos/25549225/pexels-photo-25549225/free-photo-of-goat-on-a-farm.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="Cat tree" class="img-fluid h-100 w-100" style="object-fit: cover;">
+              </div>
+              <div class="col-md-7">
+                <div class="card-body d-flex flex-column h-100">
+                  <h4 class="card-title mb-2">Multi-Level Cat Tree</h4>
+                  <p class="card-text mb-4">Give your feline friend the perfect place to climb, scratch, and relax with this sturdy cat tree.</p>
+                  <div class="mt-auto">
+                    <button class="read-more-btn w-100">Read more</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="col-lg-6">
+          <div class="card related-card border-0 h-100">
+            <div class="row g-0">
+              <div class="col-md-5">
+                <img src="https://images.pexels.com/photos/25549225/pexels-photo-25549225/free-photo-of-goat-on-a-farm.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="Pet grooming kit" class="img-fluid h-100 w-100" style="object-fit: cover;">
+              </div>
+              <div class="col-md-7">
+                <div class="card-body d-flex flex-column h-100">
+                  <h4 class="card-title mb-2">Professional Grooming Kit</h4>
+                  <p class="card-text mb-4">Complete set of high-quality grooming tools to keep your pet looking their best at home.</p>
+                  <div class="mt-auto">
+                    <button class="read-more-btn w-100">Read more</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
