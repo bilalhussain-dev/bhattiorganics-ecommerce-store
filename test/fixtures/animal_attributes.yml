@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product: one
+  breed: MyString
+  age: 1
+  weight: 9.99
+  height: 9.99
+  health_status: MyString
+  color: MyString
+  vaccinated: false
+
+two:
+  product: two
+  breed: MyString
+  age: 1
+  weight: 9.99
+  height: 9.99
+  health_status: MyString
+  color: MyString
+  vaccinated: false

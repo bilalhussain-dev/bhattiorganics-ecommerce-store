@@ -25,6 +25,10 @@ Rails.application.routes.draw do
     resource :wishlist, only: [:create, :destroy]
   end
 
+  # Route to get category type
+  get '/categories/:category_id/type', to: 'products#get_category_type', as: :category_type
+
+
   get "about",to: "pages#about", as: :about_page
   resources :categories, only: [:index, :create]
 
@@ -35,4 +39,5 @@ Rails.application.routes.draw do
   # Dashboard
   get "dashboard", to: "dashboard#index"
   get "dashboard/wishlist", to: "dashboard#wishlist"
+
 end

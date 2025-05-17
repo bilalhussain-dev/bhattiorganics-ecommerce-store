@@ -1,24 +1,23 @@
-<div class="container py-5">
+<div class="container py-4">
   <div class="row justify-content-center">
     <div class="col-lg-10">
-      <div class="product-form-container">
-        <div class="product-form-header">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white border-0 pt-4 pb-3">
           <% if @product.new_record? %>
-            <h2>Create New Product</h2>
-            <p>Fill in the details below to add a new product to your inventory</p>
-
-            <%else %>
-            <h2>Edit Product</h2>
-            <p>Fill in the details below to add a new product to your inventory</p>
+            <h4 class="mb-1" style="color: var(--text-dark);">Create New Product</h4>
+            <p class="text-muted mb-0 small">Fill in the details below to add a new product to your inventory</p>
+          <% else %>
+            <h4 class="mb-1" style="color: var(--text-dark);">Edit Product</h4>
+            <p class="text-muted mb-0 small">Update the details below to modify your product</p>
           <% end %>
         </div>
 
-        <div class="product-form-body">
+        <div class="card-body p-4">
           <%= form_with(model: product, class: "needs-validation") do |form| %>
             <% if product.errors.any? %>
-              <div class="error-container">
-                <h5><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h5>
-                <ul>
+              <div class="alert alert-danger mb-4">
+                <h6 class="mb-1"><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h6>
+                <ul class="mb-0 ps-3">
                   <% product.errors.each do |error| %>
                     <li><%= error.full_message %></li>
                   <% end %>
@@ -26,79 +25,185 @@
               </div>
             <% end %>
 
-            <div class="form-section">
-              <h3 class="form-section-title">Basic Information</h3>
+            <!-- Tab navigation -->
+            <ul class="nav nav-tabs mb-4" id="productFormTabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic" type="button" role="tab" aria-selected="true">Basic Info</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="attributes-tab" data-bs-toggle="tab" data-bs-target="#attributes" type="button" role="tab" aria-selected="false">Attributes</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pricing-tab" data-bs-toggle="tab" data-bs-target="#pricing" type="button" role="tab" aria-selected="false">Pricing</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="additional-tab" data-bs-toggle="tab" data-bs-target="#additional" type="button" role="tab" aria-selected="false">Additional</button>
+              </li>
+            </ul>
 
-              <div class="form-floating mb-3">
-                <%= form.text_field :title, class: "form-control", placeholder: "Product Title", id: "productTitle" %>
-                <%= form.label :title, "Product Title", for: "productTitle" %>
-              </div>
-
-              <div class="form-floating mb-3">
-                <%= form.text_area :details, class: "form-control", placeholder: "Product Details", id: "productDetails", style: "height: 120px" %>
-                <%= form.label :details, "Description", for: "productDetails" %>
-              </div>
-
-              <div class="row align-items-center">
-                <div class="col-md-6">
-                  <label class="form-label mb-2">Product Status</label>
-                  <div class="status-toggle">
-                    <%= form.radio_button :product_status, "active", id: "statusActive", checked: form.object.product_status == "active" || form.object.product_status.nil? %>
-                    <label for="statusActive">Active</label>
-
-                    <%= form.radio_button :product_status, "draft", id: "statusDraft", checked: form.object.product_status == "draft" %>
-                    <label for="statusDraft">Draft</label>
-                  </div>
-                </div>
-
-                <div class="col-md-6">
-                  <div class="form-floating">
-                    <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "Select Category" }, { class: "form-select", id: "productCategory" } %>
-                    <%= form.label :category_id, "Category", for: "productCategory" %>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-section">
-              <h3 class="form-section-title">Pricing & Inventory</h3>
-
-              <div class="row">
-                <div class="col-md-6">
+            <!-- Tab content -->
+            <div class="tab-content" id="productFormTabContent">
+              <!-- Basic Information Tab -->
+              <div class="tab-pane fade show active" id="basic" role="tabpanel" aria-labelledby="basic-tab">
+                <div class="form-section">
+                  <h5 class="mb-3" style="color: var(--text-dark);">Basic Information</h5>
 
                   <div class="form-floating mb-3">
-                    <%= form.text_field :price, class: "form-control", placeholder: "Price", id: "productPrice" %>
-                    <%= form.label :stock, "Price", for: "productPrice" %>
+                    <%= form.text_field :title, class: "form-control", placeholder: "Product Title", id: "productTitle" %>
+                    <%= form.label :title, "Product Title", for: "productTitle" %>
                   </div>
-                </div>
 
-                <div class="col-md-6">
                   <div class="form-floating mb-3">
-                    <%= form.number_field :stock, class: "form-control", placeholder: "Stock", id: "productStock" %>
-                    <%= form.label :stock, "Available Quantity", for: "productStock" %>
+                    <%= form.text_area :details, class: "form-control", placeholder: "Product Details", id: "productDetails", style: "height: 120px" %>
+                    <%= form.label :details, "Description", for: "productDetails" %>
+                  </div>
+
+                  <div class="row align-items-center mb-3">
+                    <div class="col-md-6">
+                      <div class="form-floating">
+                        <%= form.collection_select :category_id, @categories, :id, :name,
+                                                   { prompt: "Select a category" },
+                                                   { class: "form-select category-select", id: "productCategory", required: true } %>
+                        <%= form.label :category_id, "Category", for: "productCategory"%>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div class="mb-4">
-                <label class="form-label">Product Image</label>
-                <div class="thumbnail-preview">
-                  <span>Click or drag to upload image</span>
+              <!-- Attributes Tab -->
+              <div class="tab-pane fade" id="attributes" role="tabpanel" aria-labelledby="attributes-tab">
+                <!-- Category selection (duplicated to ensure it's always visible) -->
+                <div class="row align-items-center mb-4">
+                  <div class="col-md-6">
+                    <div class="form-floating">
+                      <%= form.collection_select :category_id, @categories, :id, :name,
+                                                 { prompt: "Select a category" },
+                                                 { class: "form-select category-select-duplicate", id: "productCategoryDuplicate", required: true } %>
+                      <%= form.label :category_id, "Category", for: "productCategoryDuplicate"%>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Animal Attributes -->
+                <div id="animal_attributes" class="dynamic-attributes" style="display:<%= @product.category&.category_type == 'animal' ? 'block' : 'none' %>;">
+                  <h5 class="mb-3" style="color: var(--text-dark);">Animal Attributes</h5>
+                  <%= form.fields_for :animal_attribute do |animal_form| %>
+                    <div class="row g-3">
+                      <div class="col-md-6 mb-3 form-floating">
+                        <%= animal_form.number_field :height, class: "form-control", placeholder: "Height", min: 0, step: "any", required: true %>
+                        <%= animal_form.label :height, class: "form-label" %>
+                      </div>
+
+                      <div class="col-md-6 mb-3 form-floating">
+                        <%= animal_form.number_field :weight, class: "form-control", placeholder: "Weight", min: 0, step: "any", required: true %>
+                        <%= animal_form.label :weight, class: "form-label" %>
+                      </div>
+
+                      <div class="col-md-6 mb-3 form-floating">
+                        <%= animal_form.text_field :breed, class: "form-control", placeholder: "Breed", required: true %>
+                        <%= animal_form.label :breed, class: "form-label" %>
+                      </div>
+
+                      <div class="col-md-6 mb-3 form-floating">
+                        <%= animal_form.number_field :age, class: "form-control", placeholder: "Age", min: 0, required: true %>
+                        <%= animal_form.label :age, class: "form-label" %>
+                      </div>
+
+                      <div class="col-md-6 mb-3 form-floating">
+                        <%= animal_form.text_field :color, class: "form-control", placeholder: "Color", required: true %>
+                        <%= animal_form.label :color, class: "form-label" %>
+                      </div>
+
+                      <div class="col-md-6 mb-3 form-floating">
+                        <%= animal_form.text_field :health_status, class: "form-control", placeholder: "Health Status", required: true %>
+                        <%= animal_form.label :health_status, class: "form-label" %>
+                      </div>
+
+                      <div class="col-md-6 mb-3">
+                        <div class="form-check mt-4">
+                          <%= animal_form.check_box :vaccinated, class: "form-check-input" %>
+                          <%= animal_form.label :vaccinated, class: "form-check-label" %>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+
+                </div>
+
+                <!-- Bird Attributes -->
+                <div id="bird_attributes" class="dynamic-attributes" style="display:<%= @product.category&.category_type == 'bird' ? 'block' : 'none' %>">
+                  <h5 class="mb-3" style="color: var(--text-dark);">Bird Attributes</h5>
+                  <%= form.fields_for :bird_attribute do |bird_form| %>
+                    <div class="row g-3">
+                      <div class="col-md-6 mb-3 form-floating">
+                        <%= bird_form.text_field :cage_type, class: "form-control", placeholder: "Cage Type", required: true %>
+                        <%= bird_form.label :cage_type, class: "form-label" %>
+                      </div>
+
+                      <div class="col-md-6 mb-3 form-floating">
+                        <%= bird_form.text_field :color, class: "form-control", placeholder: "Color", required: true %>
+                        <%= bird_form.label :color, class: "form-label" %>
+                      </div>
+
+                      <div class="col-md-6 mb-3 form-floating">
+                        <%= bird_form.number_field :age, class: "form-control", placeholder: "Age", min: 0, required: true %>
+                        <%= bird_form.label :age, class: "form-label" %>
+                      </div>
+
+                      <div class="col-md-6 mb-3 form-floating">
+                        <%= bird_form.number_field :weight, class: "form-control", placeholder: "Weight", min: 0, step: "any", required: true %>
+                        <%= bird_form.label :weight, class: "form-label" %>
+                      </div>
+
+                      <div class="col-md-6 mb-3 form-floating">
+                        <%= bird_form.text_field :health_status, class: "form-control", placeholder: "Health Status", required: true %>
+                        <%= bird_form.label :health_status, class: "form-label" %>
+                      </div>
+
+                      <div class="col-md-6 mb-3">
+                        <div class="form-check mt-4">
+                          <%= bird_form.check_box :vaccinated, class: "form-check-input" %>
+                          <%= bird_form.label :vaccinated, class: "form-check-label" %>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+
                 </div>
               </div>
-            </div>
 
-            <div class="form-section">
-              <h3 class="form-section-title">Additional Information</h3>
+              <!-- Pricing Tab -->
+              <div class="tab-pane fade" id="pricing" role="tabpanel" aria-labelledby="pricing-tab">
+                <div class="form-section">
+                  <h5 class="mb-3" style="color: var(--text-dark);">Pricing & Inventory</h5>
 
-              <div class="mb-4">
-                <%= form.rich_text_area :additional_info, class: "form-control", placeholder: "Additional details about your product..." %>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-floating mb-3">
+                        <%= form.text_field :price, class: "form-control", placeholder: "Price", id: "productPrice" %>
+                        <%= form.label :price, "Price", for: "productPrice" %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Additional Tab -->
+              <div class="tab-pane fade" id="additional" role="tabpanel" aria-labelledby="additional-tab">
+                <div class="form-section">
+                  <h5 class="mb-3" style="color: var(--text-dark);">Additional Information</h5>
+
+                  <div class="mb-4">
+                    <%= form.rich_text_area :additional_info, class: "form-control", placeholder: "Additional details about your product..." %>
+                  </div>
+                </div>
               </div>
             </div>
 
             <div class="d-flex justify-content-between mt-4">
-              <%= link_to "Cancel", products_path, class: "btn btn-product-cancel" %>
-              <%= form.submit "Save Product", class: "btn btn-product-submit" %>
+              <%= link_to "Cancel", products_path, class: "btn btn-outline-secondary" %>
+              <%= form.submit "Save Product", class: "btn text-white", style: "background-color: var(--primary-sub);" %>
             </div>
           <% end %>
         </div>
@@ -106,3 +211,64 @@
     </div>
   </div>
 </div>
+
+<!-- JavaScript to handle category change -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const categorySelect = document.querySelector('.category-select');
+        const categorySelectDuplicate = document.querySelector('.category-select-duplicate');
+
+        // Function to toggle attribute sections based on category
+        function toggleAttributeSections(categoryId) {
+            if (!categoryId) return;
+
+            fetch(`/categories/${categoryId}/type`)
+                .then(response => response.json())
+                .then(data => {
+                    const animalSection = document.getElementById('animal_attributes');
+                    const birdSection = document.getElementById('bird_attributes');
+
+                    // Hide all sections first
+                    animalSection.style.display = 'none';
+                    birdSection.style.display = 'none';
+
+                    // Show the appropriate section based on category type
+                    if (data.type === 'animal') {
+                        animalSection.style.display = 'block';
+                        // Activate attributes tab
+                        document.getElementById('attributes-tab').click();
+                    } else if (data.type === 'bird') {
+                        birdSection.style.display = 'block';
+                        // Activate attributes tab
+                        document.getElementById('attributes-tab').click();
+                    }
+                });
+        }
+
+        // Sync the two category selects
+        function syncCategorySelects(sourceSelect, targetSelect) {
+            targetSelect.value = sourceSelect.value;
+        }
+
+        // Add event listeners to category select dropdowns
+        if (categorySelect) {
+            categorySelect.addEventListener('change', function() {
+                toggleAttributeSections(this.value);
+                syncCategorySelects(categorySelect, categorySelectDuplicate);
+            });
+
+            // Initialize based on selected value (e.g., when editing)
+            if (categorySelect.value) {
+                toggleAttributeSections(categorySelect.value);
+                syncCategorySelects(categorySelect, categorySelectDuplicate);
+            }
+        }
+
+        if (categorySelectDuplicate) {
+            categorySelectDuplicate.addEventListener('change', function() {
+                toggleAttributeSections(this.value);
+                syncCategorySelects(categorySelectDuplicate, categorySelect);
+            });
+        }
+    });
+</script>

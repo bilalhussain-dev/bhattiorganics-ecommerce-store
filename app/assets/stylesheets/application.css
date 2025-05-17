@@ -41,6 +41,50 @@
     border: none;
 }
 
+
+/************
+********** Tabs and form UI *********/
+.nav-tabs .nav-link {
+    color: var(--text-muted);
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.75rem 1rem;
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--primary-sub);
+    background: transparent;
+    border-bottom: 2px solid var(--primary-sub);
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+    color: var(--primary-sub) !important;
+    padding: 20px !important;
+}
+
+.form-control:focus {
+    border-color: var(--primary-sub);
+    box-shadow: 0 0 0 0.25rem rgba(219, 114, 16, 0.25);
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-sub);
+    border-color: var(--primary-sub);
+}
+
+.btn-outline-secondary {
+    color: var(--text-dark);
+    border-color: var(--border-light);
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--light);
+    border-color: var(--border-light);
+    color: var(--text-dark);
+}
+
+
 .dropdown-menu-categories {width: 200px;}
 
 .product-heading-link {
