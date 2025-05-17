@@ -29,7 +29,10 @@
     <button class="filter-btn">Sports</button>
   </div>
 
-  <h2 class="section-title">Explore All</h2>
+  <div class="section-header">
+    <div class="section-subtitle">Discover Our</div>
+    <h2 class="section-title">Organic Pet Farm Products</h2>
+  </div>
 
   <div class="row">
     <!-- Product 1 -->
@@ -50,6 +53,57 @@
       </div>
     <% end %>
   </div>
+
+  <div class="container py-5">
+    <div class="section-header">
+      <div class="section-subtitle">Discover Our</div>
+      <h2 class="section-title">Organic Pet Farm Categories</h2>
+    </div>
+
+    <div class="scroll-controls">
+      <button class="scroll-btn" id="scrollLeft">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button class="scroll-btn" id="scrollRight">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="categories-wrapper">
+      <div class="categories-scroll" id="categoriesScroll">
+        <!-- Category 1 -->
+        <% @categories.each do |category| %>
+          <% count = category.products.count %>
+          <div class="category-card">
+
+            <% if count > 2 %>
+              <div class="category-badge">Popular</div>
+            <% end %>
+
+            <div class="category-image" style="background-image: url('/api/placeholder/400/320');"></div>
+            <div class="category-info">
+              <h4><%= category.name %></h4>
+
+              <div class="category-meta">
+        <span class="category-count">
+          <%= "#{count} #{'Product'.pluralize(count)}" unless count.zero? %>
+          <%= 'Not listed yet' if count.zero? %>
+        </span>
+                <%= link_to "View All", "#", class: 'btn-view' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+
+
 </div>
 
 <% if user_signed_in? %>

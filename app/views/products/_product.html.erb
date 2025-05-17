@@ -22,30 +22,27 @@
 
         <!-- Product Info -->
         <div class="col-lg-6">
+
           <div class="d-flex justify-content-between align-items-start mb-2">
-            <span class="category-badge">
-              <%= product.category.name %>
-            </span>
-            <div>
-              <div class="d-flex gap-3 mb-4">
-                <% if user_signed_in? %>
-                  <% if current_user.wished_products.include?(@product) %>
-                    <%= button_to product_wishlist_path(@product), method: :delete, class: "btn-favorite" do %>
-                      <i class="fa fa-gratipay" aria-hidden="true"></i>
-                    <% end %>
-                  <% else %>
-                    <%= button_to product_wishlist_path(@product), method: :post, class: "btn-favorite" do %>
-                      <i class="fa fa-gratipay filled-heart" aria-hidden="true"></i>
-                    <% end %>
-                  <% end %>
+            <span class="category-badge-product"><%= product.category.name %></span>
+            <% if user_signed_in? %>
+              <% if current_user.wished_products.include?(@product) %>
+                <%= button_to product_wishlist_path(@product), method: :delete, class: "btn-favorite" do %>
+                  <i class="fa fa-gratipay" aria-hidden="true"></i>
                 <% end %>
-              </div>
-            </div>
+              <% else %>
+                <%= button_to product_wishlist_path(@product), method: :post, class: "btn-favorite" do %>
+                  <i class="fa fa-gratipay filled-heart" aria-hidden="true"></i>
+                <% end %>
+              <% end %>
+            <% end %>
           </div>
+
           <h1 class="product-title-show mb-2"><%= product.title %></h1>
           <p class="price mb-4">$<%= product.price %></p>
           <p class="mb-4"><%= product.additional_info %></p>
         </div>
+
       </div>
     </div>
 
