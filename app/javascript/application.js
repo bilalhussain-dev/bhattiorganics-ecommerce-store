@@ -59,3 +59,55 @@ document.querySelectorAll('.thumbnail').forEach(thumb => {
         this.classList.add('active');
     });
 });
+
+// Slider for showing categories
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollContainer = document.getElementById('categoriesScroll');
+    const scrollLeftBtn = document.getElementById('scrollLeft');
+    const scrollRightBtn = document.getElementById('scrollRight');
+
+    scrollLeftBtn.addEventListener('click', function() {
+        scrollContainer.scrollBy({
+            left: -300,
+            behavior: 'smooth'
+        });
+    });
+
+    scrollRightBtn.addEventListener('click', function() {
+        scrollContainer.scrollBy({
+            left: 300,
+            behavior: 'smooth'
+        });
+    });
+
+    // Add touch swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    scrollContainer.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, false);
+
+    scrollContainer.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, false);
+
+    function handleSwipe() {
+        if (touchStartX - touchEndX > 50) {
+            // Swipe left
+            scrollContainer.scrollBy({
+                left: 300,
+                behavior: 'smooth'
+            });
+        }
+
+        if (touchEndX - touchStartX > 50) {
+            // Swipe right
+            scrollContainer.scrollBy({
+                left: -300,
+                behavior: 'smooth'
+            });
+        }
+    }
+});
